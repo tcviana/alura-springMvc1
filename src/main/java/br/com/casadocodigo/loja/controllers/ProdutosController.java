@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.loja.dao.ProdutoDAO;
 import br.com.casadocodigo.loja.models.Produto;
@@ -25,10 +26,26 @@ public class ProdutosController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String gravar(Produto produto){
+	public ModelAndView gravar(Produto produto, RedirectAttributes redirectAttributes){
 		System.out.println(produto);
 		dao.gravar(produto);
-		return "/produtos/ok";
+		/**
+		 * Atributos do tipo Flash têm uma particularidade que é interessante observar. 
+		 * Eles só duram até a próxima requisição, ou seja, transportam informações de uma 
+		 * requisição para a outra e, então, deixam de existir. (usando o código de status 302).
+		 */
+		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
+		/**
+		 * ao fazer F5 o navegador repete o ultimo request que ele realizou, 
+		 * e quando esse resquest é um POST, todos os dados que foram enviados 
+		 * também são repetidos. Se você realizou um insert no banco de dados, 
+		 * esse insert será repetido. Ou mesmo se realizou alguma operações que 
+		 * envia e-mail, por exemplo, o e-mail será enviado duas vezes ao pressionar F5.
+		 * Para evitar qualquer problema de dados reenviados, 
+		 * realizamos um redirect após um formulário com POST.
+		 */
+		ModelAndView modelAndView = new ModelAndView("redirect:produtos");
+		return modelAndView;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)

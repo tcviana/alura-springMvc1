@@ -8,6 +8,7 @@
 <title>Produtos</title>
 </head>
 <body>
+	<div>${sucesso}</div>
 	<h1>Lista de Livros</h1>
 	<table>
 		<tr>
