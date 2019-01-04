@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,11 @@
 				<nav id="main-nav">
 
 					<ul class="clearfix">
-						<li><a href="/carrinho" rel="nofollow">Carrinho (${carrinhoCompras.quantidade })</a></li>
+						<li>
+							<a href="/carrinho" rel="nofollow">
+								Carrinho (${carrinhoCompras.quantidade })
+							</a>
+						</li>
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 					</ul>
@@ -77,14 +81,14 @@
 				<ul id="variants" class="clearfix">
 					<c:forEach items="${produto.precos }" var="preco">
 						<li class="buy-option">
-							<input type="radio" name="id" class="variant-radio" id="tipo" value="${preco.tipo }" checked="checked" /> 
+							<input type="radio" name="tipoPreco" class="variant-radio" id="tipoPreco" value="${preco.tipo }" checked="checked" /> 
 							<label class="variant-label" >${preco.tipo }</label> 
 							<small class="compare-at-price">R$ 39,90</small>
 							<p class="variant-price">${preco.valor }</p>
 						</li>
 					</c:forEach>
 				</ul>
-				<button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora ${produto.titulo }"></button>
+				<button type="submit" class="submit-image icon-basket-alt" title="Compre Agora ${produto.titulo }"></button>
 			</form>
 		</section>
 
@@ -103,7 +107,9 @@
 					Número de páginas: <span>${produto.paginas}</span>
 				</p>
 				<p></p>
-				<p>Data de publicação: <fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time }"/> </p>
+				<p>Data de publicação: 
+					<span><fmt:formatDate value="${produto.dataLancamento.time }" pattern="dd/MM/yyyy"/></span>
+				</p>
 				<p>
 					Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a>
 				</p>
