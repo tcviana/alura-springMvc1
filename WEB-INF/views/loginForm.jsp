@@ -25,14 +25,11 @@
             <div class="form-group">
                 <label>Nome</label>
                 <input type="text" name="username" class="form-control" />
-                <form:errors path="username" />
             </div>
             <div class="form-group">
                 <label>Senha</label>
                 <input type="password" name="password" class="form-control" />
-                <form:errors path="password" />
             </div>
-            <form:errors path="*" />
             <button type="submit" class="btn btn-primary">Logar</button>
         </form:form>
     </div>
