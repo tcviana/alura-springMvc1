@@ -29,6 +29,7 @@ public class SecurityConfiguration
 		.antMatchers("/carrinho/**").permitAll()	
 		.antMatchers("/pagamento/**").permitAll()	
 		.antMatchers("/").permitAll()
+		.antMatchers("/cria-usuario-adm").permitAll()
 		.anyRequest().authenticated()
 		.and()
 			.formLogin().loginPage("/login").defaultSuccessUrl("/produtos").permitAll()
