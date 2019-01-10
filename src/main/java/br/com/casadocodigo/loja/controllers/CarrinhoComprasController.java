@@ -46,7 +46,7 @@ public class CarrinhoComprasController {
 	}
 	
 	@RequestMapping("/remover")
-	public ModelAndView remove(Integer produtoId, TipoPreco tipoPreco) {
+	public ModelAndView remover(Integer produtoId, TipoPreco tipoPreco) {
 		carrinho.remover(produtoId, tipoPreco);
 		return new ModelAndView("redirect:/carrinho");
 	}

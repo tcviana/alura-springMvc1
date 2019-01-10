@@ -31,7 +31,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("UTF-8");
-        return new Filter[] {encodingFilter};
+        return new Filter[] {encodingFilter}; // para manter a consulta de dados aberta até a visualização da view utilize new OpenEntityManagerInViewFilter()
     }
 	
 	//veja tbm https://cursos.alura.com.br/forum/topico-atualizacao-resources-nao-sao-carregados-na-aula-10-58813
